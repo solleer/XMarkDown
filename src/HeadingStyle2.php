@@ -10,15 +10,14 @@ class HeadingStyle2 implements Block {
 
 	public function parse($block) {
 		$pos = 0;
-		while ($block[$pos] === '#') {
+		while ($block[0][$pos] === '#') {
 			$pos++;
 		}
 
 		if ($pos == 0) return false;
 		else {
-			$this->document->documentElement->appendChild($this->document->createElement('h' . $pos, substr($block, $pos+1)));
+			$this->document->documentElement->appendChild($this->document->createElement('h' . $pos+1, substr($block[0], $pos+1)));
 			return Block::MATCH;
 		}
 	}
 }
-// phpunit --bootstrap tests/bootstrap.php tests/MarkDownTest
